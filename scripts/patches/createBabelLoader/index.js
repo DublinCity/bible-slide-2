@@ -38,7 +38,7 @@ const after = `function createBabelLoader(configurator) {
         loader: "babel-loader",
         options: {
             presets,
-            plugins: [require("babel-plugin-syntax-dynamic-import")]
+            plugins
         }
     };
 }`;
