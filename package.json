@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "yarn patch:babel",
+    "patch:babel": "node scripts/patch-babel",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
@@ -15,6 +17,7 @@
     "electron": "^1.7.6",
     "electron-builder": "^19.27.7",
     "electron-webpack": "^1.5.0",
+    "replace-in-file": "^3.0.0-beta.2",
     "webpack": "^3.5.6"
   }
 }

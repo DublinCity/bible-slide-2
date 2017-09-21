@@ -1,3 +1,9 @@
+# NOTE: Fork info
+
+This is a fork of the original `electron-webpack-quick-start`.
+
+- Patches electron-webpack via `scripts/patch-babel.js` and adds supports for any babel preset or plugin found in devDependencies. Might become obsolete if https://github.com/electron-userland/electron-webpack/pull/28 gets merged
+
 # electron-webpack-quick-start
 > A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
 
