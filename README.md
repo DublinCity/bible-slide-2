@@ -3,6 +3,10 @@
 This is a fork of the original `electron-webpack-quick-start`.
 
 - Patches electron-webpack via `scripts/patch-babel.js` and adds supports for any babel preset or plugin found in devDependencies. Might become obsolete if https://github.com/electron-userland/electron-webpack/pull/28 gets merged
+- Includes `react` and `react-dom`
+- Includes `babel-preset-stage-0` and `babel-plugin-transform-decorators-legacy`
+- Includes `eslint` and `prettier` setup (make sure you set up your IDE to format using `prettier`, see `.eslintrc.js` for prettier config, e.g. for Sublime use https://packagecontrol.io/packages/JsPrettier)
+- Includes `node-sass` and `sass-loader`
 
 # electron-webpack-quick-start
 > A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
