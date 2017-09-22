@@ -2,17 +2,29 @@
 
 // workaround until https://github.com/electron-userland/electron-webpack/pull/28 is merged (or not...)
 // adds support for any babel preset or plugin
+// adds HMR for CSS/SCSS
 
 const patches = [
-    require('./patches/createBabelLoader'),
-    require('./patches/getMatchingDevDependencies')
+    './patches/getMatchingDevDependencies',
+    './patches/createBabelLoader',
+    './patches/cssHotLoader/common',
+    './patches/cssHotLoader/css',
+    './patches/cssHotLoader/less',
+    './patches/cssHotLoader/scss'
 ];
 
 const replace = require('replace-in-file');
-patches.forEach(patch => {
+patches.forEach(applyPatch);
+
+function applyPatch(name) {
+    const patch = require(name);
+    if (Array.isArray(patch)) {
+        patch.forEach(applyPatch);
+        return;
+    }
     try {
-        replace.sync(patch);
-        console.log(`[patch-babel] patched ${patch.files}`);
+        const changes = replace.sync(patch);
+        console.log(`[patches] ${name}`, changes && changes.length ? { changes } : '(unchanged)');
     } catch (error) {
         console.log('┎──────────────────────────────────────────────────────────────────');
         console.log('┃');
@@ -21,4 +33,4 @@ patches.forEach(patch => {
         console.log('┖──────────────────────────────────────────────────────────────────');
         console.log(error);
     }
-});
+}
