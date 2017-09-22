@@ -7,6 +7,7 @@ This is a fork of the original `electron-webpack-quick-start`.
 - Includes `babel-preset-stage-0` and `babel-plugin-transform-decorators-legacy`
 - Includes `eslint` and `prettier` setup (make sure you set up your IDE to format using `prettier`, see `.eslintrc.js` for prettier config, e.g. for Sublime use https://packagecontrol.io/packages/JsPrettier)
 - Includes `node-sass` and `sass-loader`
+- Adds support for HMR on stylesheets via `css-hot-loader`
 
 # electron-webpack-quick-start
 > A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
