@@ -2,10 +2,6 @@
 
 This is a fork of the original `electron-webpack-quick-start`.
 
-- Patches `electron-webpack` itself on postinstall via `scripts/patches.js` 
-- Might become obsolete if https://github.com/electron-userland/electron-webpack/pull/28 gets merged
-- Adds supports for any babel preset or plugin found in devDependencies. 
-- Adds support for HMR on stylesheets via `css-hot-loader`
 - Includes `react` and `react-dom`
 - Includes `babel-preset-stage-0` and `babel-plugin-transform-decorators-legacy`
 - Includes `eslint` and `prettier` setup (make sure you set up your IDE to format using `prettier`, see `.eslintrc.js` for prettier config, e.g. for Sublime use https://packagecontrol.io/packages/JsPrettier)
