@@ -2,12 +2,14 @@
 
 This is a fork of the original `electron-webpack-quick-start`.
 
-- Includes `react` and `react-dom`
-- Includes `babel-preset-stage-0` and `babel-plugin-transform-decorators-legacy`
-- Includes `eslint` and `prettier` setup (make sure you set up your IDE to format using `prettier`, see `.eslintrc.js` for prettier config, e.g. for Sublime use https://packagecontrol.io/packages/JsPrettier)
-- Includes `node-sass` and `sass-loader`
+* Includes `react` and `react-dom`
+* Includes `babel-preset-stage-0` and `babel-plugin-transform-decorators-legacy`
+* Includes `eslint` and `prettier` setup (make sure you set up your IDE to format using `prettier`, see `.eslintrc.js` for prettier config, e.g. for Sublime use https://packagecontrol.io/packages/JsPrettier)
+* Includes `node-sass` and `sass-loader`
+* Includes hot module replacement
 
 # electron-webpack-quick-start
+
 > A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
 
 Thanks to the power of `electron-webpack` this template comes packed with...
@@ -20,6 +22,7 @@ Thanks to the power of `electron-webpack` this template comes packed with...
 Make sure to check out [`electron-webpack`'s documentation](https://webpack.electron.build/) for more details.
 
 ## Getting Started
+
 Simply clone down this reposity, install dependencies, and get started on your application.
 
 The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
