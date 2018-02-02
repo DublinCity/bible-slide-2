@@ -1,6 +1,17 @@
+import './styles/index.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppShell from './components/AppShell';
+const rootEl = document.getElementById('app');
 
-ReactDOM.render(<AppShell />, document.getElementById('app'));
+function render() {
+    const AppShell = require('./components/AppShell').default;
+    ReactDOM.render(<AppShell />, rootEl);
+}
+
+if (module.hot) {
+    module.hot.accept('./components/AppShell', render);
+}
+
+render();
