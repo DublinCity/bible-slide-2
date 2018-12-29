@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const recommendHisWord = (state = initialState, action) => {
-    const { keyword, selectedScripture, where, rangeHtml } = action;
+    const { keyword, selectedScripture, where, rawHtml } = action;
     switch (action.type) {
         case FIND_SCRIPT:
             return {
@@ -30,7 +30,7 @@ const recommendHisWord = (state = initialState, action) => {
         case FETCH_VERSES_SUCCESS:
             return {
                 ...state,
-                [`${where}Verses`]: rangeHtml
+                [`${where}Verses`]: rawHtml
             };
         default:
             return state;
@@ -52,7 +52,7 @@ export const findScript = keyword => {
 };
 
 export const fetchVerses = (chapter, where) => {
-    console.log(chapter, where) ;
+    console.log(chapter, where);
     return {
         type: FETCH_VERSES_REQUEST,
         chapter,

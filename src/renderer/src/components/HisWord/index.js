@@ -6,7 +6,8 @@ import Scripture from './components/Scripture';
 import Chapter from './components/Chapter';
 import Verse from './components/Verse';
 import { findScript, findChapter, fetchVerses } from '../../modules/recommendHisWord';
-import { selectScripture } from '../../modules/selectedHisWord';
+import { selectScripture, selectChapter, selectVerse, fetchHisWord } from '../../modules/selectedHisWord';
+import { saveSlide, addSlide } from '../../pptx/genHisword';
 
 class Word extends Component {
     static propTypes = {
@@ -15,6 +16,10 @@ class Word extends Component {
         findChapter: PropTypes.func.isRequired,
         fetchVerses: PropTypes.func.isRequired,
         selectScripture: PropTypes.func.isRequired,
+        selectChapter: PropTypes.func.isRequired,
+        selectVerse: PropTypes.func.isRequired,
+        fetchHisWord: PropTypes.func.isRequired,
+        saveSlide: PropTypes.func.isRequired,
         beginChapters: PropTypes.array,
         endChapters: PropTypes.array,
         beginVerses: PropTypes.string,
@@ -22,8 +27,16 @@ class Word extends Component {
     };
 
     render() {
-        const { findScript, findChapter, selectScripture } = this.props;
-        const { scriptures, beginChapters, endChapters, beginVerses, endVerses,  fetchVerses } = this.props;
+        const {
+            findScript,
+            findChapter,
+            selectScripture,
+            selectChapter,
+            selectVerse,
+            fetchHisWord,
+            saveSlide
+        } = this.props;
+        const { scriptures, beginChapters, endChapters, beginVerses, endVerses, fetchVerses } = this.props;
         return (
             <div>
                 <Scripture
@@ -38,8 +51,12 @@ class Word extends Component {
                     beginVerses={beginVerses}
                     endVerses={endVerses}
                     fetchVerses={fetchVerses}
+                    onClickChapter={selectChapter}
+                    onClickVerse={selectVerse}
                 />
                 {/* <Verse /> */}
+                <button onClick={fetchHisWord}>말씀 가져오기</button>
+                <button onClick={saveSlide}>SAVE</button>
             </div>
         );
     }
@@ -51,7 +68,8 @@ const mapStateToProps = state => {
         beginChapters: state.hisWord.recommendHisWord.beginChapters,
         endChapters: state.hisWord.recommendHisWord.endChapters,
         beginVerses: state.hisWord.recommendHisWord.beginVerses,
-        endVerses: state.hisWord.recommendHisWord.endVerses
+        endVerses: state.hisWord.recommendHisWord.endVerses,
+        saveSlide: saveSlide(state.hisWord.selectedHisWord)
     };
 };
 
@@ -59,7 +77,10 @@ const mapDispatchToProps = {
     findScript,
     findChapter,
     selectScripture,
-    fetchVerses
+    fetchVerses,
+    selectChapter,
+    selectVerse,
+    fetchHisWord
 };
 
 export default connect(
