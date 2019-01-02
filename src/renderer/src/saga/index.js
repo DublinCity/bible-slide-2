@@ -2,7 +2,9 @@ import { delay } from 'redux-saga';
 import { all, takeEvery, put, call, select } from 'redux-saga/effects';
 import { FETCH_VERSES_REQUEST, FETCH_VERSES_SUCCESS } from '../modules/recommendHisWord';
 import { FETCH_HISWORD_REQUEST, FETCH_HISWORD_SUCCESS } from '../modules/selectedHisWord';
+import { addSlide, addTitleSlide } from '../pptx/genHisword';
 
+let isFirst = true;
 const incrementAsync = function*() {
     yield delay(1000);
 };
@@ -54,7 +56,7 @@ export const fetchVerses = function*(action) {
 };
 
 export const fetchHisWord = function*() {
-    const { engScripture, beginChapter } = yield select(state => {
+    const { engScripture, scripture, beginChapter, endChapter, beginVerse, endVerse } = yield select(state => {
         return state.hisWord.selectedHisWord;
     });
     const rawHtml = yield call(
@@ -66,6 +68,11 @@ export const fetchHisWord = function*() {
         type: FETCH_HISWORD_SUCCESS,
         hisWord
     });
+    if (isFirst) {
+        addTitleSlide({ scripture, hisWord, beginChapter, beginVerse, endVerse });
+        isFirst = false;
+    }
+    addSlide({ scripture, hisWord, beginChapter, beginVerse, endVerse });
 };
 
 export const watchFetchVerses = function*() {

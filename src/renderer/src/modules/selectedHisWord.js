@@ -5,6 +5,7 @@ const SELECT_CHAPTER = 'SELECT_CHAPTER';
 const SELECT_VERSE = 'SELECT_VERSE';
 export const FETCH_HISWORD_REQUEST = 'FETCH_HISWORD_REQUEST';
 export const FETCH_HISWORD_SUCCESS = 'FETCH_HISWORD_SUCCESS';
+export const ADD_HIS_WORD = 'ADD_HIS_WORD';
 
 const initialState = {
     scripture: '',
@@ -13,7 +14,8 @@ const initialState = {
     endChapter: 1,
     beginVerse: 1,
     endVerse: 1,
-    hisWord: []
+    hisWord: [],
+    slides: []
 };
 
 const selectedHisWord = (state = initialState, action) => {
@@ -40,6 +42,14 @@ const selectedHisWord = (state = initialState, action) => {
             return {
                 ...state,
                 hisWord
+            };
+        case ADD_HIS_WORD:
+            return {
+                ...state,
+                slides: [
+                    ...state.slides,
+                    `${state.scripture} ${state.beginChapter}:${state.beginVerse}-${state.endVerse}`
+                ]
             };
         default:
             return state;
@@ -72,6 +82,12 @@ export const selectVerse = (verse, where) => {
 export const fetchHisWord = () => {
     return {
         type: FETCH_HISWORD_REQUEST
+    };
+};
+
+export const addHisWord = () => {
+    return {
+        type: ADD_HIS_WORD
     };
 };
 

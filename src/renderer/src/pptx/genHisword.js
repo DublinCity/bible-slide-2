@@ -1,6 +1,8 @@
 import PptxGenJS from 'pptxgenjs';
 import path from 'path';
+import { addHisWord } from '../modules/selectedHisWord';
 const hisWordBkgdPath = 'file:///Users/Koo/workspace/electron-webpack-quick-start/static/img/hisWordBkgd.png';
+const titleBkgdPath = 'file:///Users/Koo/workspace/electron-webpack-quick-start/static/img/titleBkgd.png';
 
 const pptx = new PptxGenJS();
 pptx.setLayout('LAYOUT_4x3');
@@ -8,22 +10,21 @@ pptx.defineSlideMaster({
     title: 'HIS_WORD_SLIDE',
     bkgd: '000000',
     objects: [
-        { text: { text: 'Status Report', options: { x: 3.0, y: 5.3, w: 5.5, h: 0.75 } } },
         {
             image: {
                 x: 0,
                 y: 0,
                 w: '100%',
                 h: '100%',
-                path: true ? hisWordBkgdPath : path.join(__static, '/img/hisWordBkgd.png')
+                path: false ? hisWordBkgdPath : path.join(__static, '/img/hisWordBkgd.png')
             }
         }
     ]
 });
 
-export const addSlide = (scripture, chapter, beginVerse, endVerse, hisword) => {
+export const makeSlide = ({ scripture, word, beginChapter, beginVerse, endVerse }) => {
     const slide = pptx.addNewSlide('HIS_WORD_SLIDE');
-    slide.addText(`${scripture} ${chapter}장 ${beginVerse}절 ~ ${endVerse}절`, {
+    slide.addText(`${scripture} ${beginChapter}장 ${beginVerse}절 ~ ${endVerse}절`, {
         x: '26%',
         y: '15%',
         w: '60%',
@@ -31,12 +32,34 @@ export const addSlide = (scripture, chapter, beginVerse, endVerse, hisword) => {
         valign: 'top',
         color: 'b0b0b0'
     });
-    slide.addText(hisword, { x: '23%', y: '24%', w: '60%', fontSize: 30, valign: 'top', bold: true });
+    slide.addText(word, { x: '23%', y: '24%', w: '60%', fontSize: 30, valign: 'top', bold: true });
 };
 
-export const saveSlide = ({ scripture, hisWord, beginChapter, endChapter, beginVerse, endVerse }) => () => {
+export const addSlide = ({ scripture, hisWord, beginChapter, beginVerse, endVerse }) => {
     for (let i = beginVerse - 1; i < endVerse; i++) {
-        addSlide(scripture, beginChapter, beginVerse, endVerse, hisWord[i]);
+        makeSlide({ scripture, hisWord, beginChapter, beginVerse, endVerse, word: hisWord[i] });
     }
+};
+
+export const addTitleSlide = ({ scripture, beginChapter, beginVerse, endVerse }) => {
+    console.log('addTITLE');
+    const slide = pptx.addNewSlide();
+    slide.addImage({
+        x: 0,
+        y: 0,
+        w: '100%',
+        h: '100%',
+        path: false ? titleBkgdPath : path.join(__static, '/img/titleBkgd.png')
+    });
+    slide.addText(`${scripture}\n${beginChapter}장 ${beginVerse}절 ~ ${endVerse}절`, {
+        x: '64%',
+        y: '43%',
+        w: '30%',
+        fontSize: 20,
+        align: 'center'
+    });
+};
+
+export const saveSlide = () => {
     pptx.save('Sample Presentation');
 };

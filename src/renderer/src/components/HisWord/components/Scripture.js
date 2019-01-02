@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { KOR_NAME, ENG_NAME } from '../../../constants/bibleList';
 
-const Scripture = ({ scriptures, onInputChange, onSelect, fetchChapter }) => {
+const Scripture = ({ scriptures, onInputChange, onSelect, fetchChapter, fetchVerses }) => {
     let inputNode;
     return (
         <Fragment>
@@ -21,6 +21,8 @@ const Scripture = ({ scriptures, onInputChange, onSelect, fetchChapter }) => {
                         onClick={() => {
                             onSelect(item[KOR_NAME], item[ENG_NAME]);
                             fetchChapter(item[KOR_NAME]);
+                            fetchVerses(1, 'begin');
+                            fetchVerses(1, 'end');
                             inputNode.value = item[KOR_NAME];
                         }}
                     >
@@ -36,7 +38,8 @@ Scripture.propTypes = {
     scriptures: PropTypes.array,
     onInputChange: PropTypes.func.isRequired,
     onSelect: PropTypes.func.isRequired,
-    fetchChapter: PropTypes.func.isRequired
+    fetchChapter: PropTypes.func.isRequired,
+    fetchVerses: PropTypes.func.isRequired
 };
 
 export default Scripture;
