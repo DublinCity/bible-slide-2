@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 
+import styles from './HisWord.scss';
 import Scripture from './components/Scripture';
 import Chapter from './components/Chapter';
-import Verse from './components/Verse';
 import { findScript, findChapter, fetchVerses } from '../../modules/recommendHisWord';
 import { selectScripture, selectChapter, selectVerse, fetchHisWord, addHisWord } from '../../modules/selectedHisWord';
 import { saveSlide } from '../../pptx/genHisword';
@@ -40,7 +41,7 @@ class Word extends Component {
         } = this.props;
         const { scriptures, beginChapters, endChapters, beginVerses, endVerses, fetchVerses } = this.props;
         return (
-            <div>
+            <div className={cx(styles.Wrapper)}>
                 <Scripture
                     scriptures={scriptures}
                     onInputChange={findScript}
@@ -48,30 +49,35 @@ class Word extends Component {
                     fetchVerses={fetchVerses}
                     onSelect={selectScripture}
                 />
-                <Chapter
-                    beginChapters={beginChapters}
-                    endChapters={endChapters}
-                    beginVerses={beginVerses}
-                    endVerses={endVerses}
-                    fetchVerses={fetchVerses}
-                    onClickChapter={selectChapter}
-                    onClickVerse={selectVerse}
-                />
-                {/* <Verse /> */}
-                <button
-                    onClick={e => {
-                        fetchHisWord();
-                        addHisWord();
-                    }}
-                >
-                    말씀 가져오기
-                </button>
                 <div>
-                    {slides.map(item => (
-                        <span>{item} </span>
-                    ))}
+                    <Chapter
+                        beginChapters={beginChapters}
+                        endChapters={endChapters}
+                        beginVerses={beginVerses}
+                        endVerses={endVerses}
+                        fetchVerses={fetchVerses}
+                        onClickChapter={selectChapter}
+                        onClickVerse={selectVerse}
+                    />
+                    {/* <Verse /> */}
+
+                    <div>
+                        {slides.map(item => (
+                            <span>{item} </span>
+                        ))}
+                    </div>
                 </div>
-                <button onClick={saveSlide}>슬라이드 만들기</button>
+                <div className={styles.buttons}>
+                    <button
+                        onClick={e => {
+                            fetchHisWord();
+                            addHisWord();
+                        }}
+                    >
+                        말씀 가져오기
+                    </button>
+                    <button onClick={saveSlide}>슬라이드 만들기</button>
+                </div>
             </div>
         );
     }

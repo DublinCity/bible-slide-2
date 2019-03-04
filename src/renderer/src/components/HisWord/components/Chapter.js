@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Proptypes from 'prop-types';
+import styles from './Chapter.scss';
+
 import reactHtmlParser from 'react-html-parser';
 
 const getSelectValue = e => {
@@ -19,7 +21,7 @@ class Chapter extends Component {
         } = this.props;
 
         return (
-            <Fragment>
+            <div className={styles.wrapper}>
                 <select
                     name="startChapter"
                     onChange={e => {
@@ -75,7 +77,7 @@ class Chapter extends Component {
                     {reactHtmlParser(endVerses)}
                 </select>
                 절
-            </Fragment>
+            </div>
         );
     }
 }

@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { KOR_NAME, ENG_NAME } from '../../../constants/bibleList';
+import styles from './Scripture.scss';
 
 const Scripture = ({ scriptures, onInputChange, onSelect, fetchChapter, fetchVerses }) => {
     let inputNode;
     return (
         <Fragment>
-            <div>
+            <div className={styles.wrapper}>
                 <input
+                    className={styles.input}
                     ref={node => (inputNode = node)}
                     placeholder="마태복음"
                     onChange={e => {

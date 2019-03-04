@@ -1,0 +1,18 @@
+:local(.wrapper) {
+  display: flex;
+  flex-direction: column;
+  
+  div {
+    font-size: 1.2rem;
+    margin-top: .3rem;
+    border: 2px dotted rgba($color: #176da3, $alpha: .5);
+  }
+}
+
+:local(input) {
+  font-size: 2rem;
+  font-weight: 200;
+  text-align: center;
+  
+  
+}
