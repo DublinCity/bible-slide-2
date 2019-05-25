@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import path from 'path';
 import cx from 'classnames';
 
 import styles from './HisWord.scss';
@@ -78,6 +79,7 @@ class Word extends Component {
                     </button>
                     <button onClick={saveSlide}>슬라이드 만들기</button>
                 </div>
+                <button onClick={() => alert(path.resolve(__static, 'img/titleBkgd.png'))}>경로</button>
             </div>
         );
     }
