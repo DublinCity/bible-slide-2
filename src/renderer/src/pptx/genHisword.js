@@ -49,7 +49,7 @@ export const addTitleSlide = ({ scripture, beginChapter, beginVerse, endVerse })
         y: 0,
         w: '100%',
         h: '100%',
-        path: false ? titleBkgdPath : path.resolve(__static, 'img/titleBkgd.png')
+        path: false ? titleBkgdPath : path.resolve('./resources/static/img/titleBkgd.png')
     });
     slide.addText(`${scripture}\n${beginChapter}장 ${beginVerse}절 ~ ${endVerse}절`, {
         x: '64%',
