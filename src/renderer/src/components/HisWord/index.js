@@ -79,7 +79,7 @@ class Word extends Component {
                     </button>
                     <button onClick={saveSlide}>슬라이드 만들기</button>
                 </div>
-                <button onClick={() => alert(path.resolve(__static, 'img/titleBkgd.png'))}>경로</button>
+                <button onClick={() => alert(path.resolve('./resources/static/img/hisWordBkgd.png'))}>경로</button>
             </div>
         );
     }

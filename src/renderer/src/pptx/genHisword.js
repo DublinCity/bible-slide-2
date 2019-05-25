@@ -16,7 +16,7 @@ pptx.defineSlideMaster({
                 y: 0,
                 w: '100%',
                 h: '100%',
-                path: false ? hisWordBkgdPath : path.resolve(__static, 'img/hisWordBkgd.png')
+                path: false ? hisWordBkgdPath : path.resolve('./resources/static/img/hisWordBkgd.png')
             }
         }
     ]
