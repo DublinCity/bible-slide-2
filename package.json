@@ -11,7 +11,7 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.5",
     "pptxgenjs": "^2.4.0",
     "react": "^16.6.3",
